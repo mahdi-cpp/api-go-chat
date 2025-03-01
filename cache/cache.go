@@ -38,6 +38,15 @@ var folders = []string{
 	"/var/cloud/fa/",
 	"/var/cloud/wallpaper/",
 
+	"/var/cloud/elec/",
+	"/var/cloud/elec/thumbnail/",
+
+	"/var/cloud/behance/06/",
+	"/var/cloud/behance/06/thumbnail/",
+
+	"/var/cloud/behance/ali/",
+	"/var/cloud/behance/ali/thumbnail/",
+
 	"/var/cloud/id/me/",
 	"/var/cloud/id/me/thumbnail",
 	"/var/cloud/id/mahan/",
@@ -91,6 +100,9 @@ var folders = []string{
 
 	"/var/cloud/tinyhome/06/",
 	"/var/cloud/tinyhome/06/thumbnail/",
+
+	"/var/cloud/chat_users/",
+	"/var/cloud/chat_users/thumbnail/",
 }
 
 var iconFolder = "/var/cloud/icons/"

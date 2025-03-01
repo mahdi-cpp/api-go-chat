@@ -1,4 +1,4 @@
-package repository_chat
+package repository
 
 import (
 	"github.com/mahdi-cpp/api-go-chat/cache"

@@ -1,4 +1,4 @@
-package repository_chat
+package repository
 
 import (
 	"github.com/mahdi-cpp/api-go-chat/cache"
@@ -6,24 +6,24 @@ import (
 	"github.com/mahdi-cpp/api-go-chat/utils"
 )
 
-var movieDTO MovieDTO
+var cameraDTO CameraDTO
 
-type MovieDTO struct {
-	Caption string  `json:"name"`
-	Movies  []Movie `json:"movies"`
+type CameraDTO struct {
+	Caption string   `json:"caption"`
+	Cameras []Camera `json:"cameras"`
 }
 
-type Movie struct {
+type Camera struct {
 	Name  string          `json:"name"`
 	Photo model.PhotoBase `json:"photo"`
 }
 
-func GetMovies(folder string) MovieDTO {
+func GetCamera(folder string) CameraDTO {
 
 	var file = "data.txt"
 	var photos = cache.ReadOfFile(folder, file)
 	var count = len(photos)
-	var dto MovieDTO
+	var dto CameraDTO
 
 	//if count > 50 {
 	//	count = 50
@@ -33,20 +33,20 @@ func GetMovies(folder string) MovieDTO {
 	var nameIndex = 0
 
 	for i := 0; i < count; i++ {
-		var movie Movie
+		var camera Camera
 		if nameIndex >= len(utils.MovieNames) {
 			nameIndex = 0
 		}
 
-		movie.Name = utils.MovieNames[nameIndex]
+		camera.Name = utils.MovieNames[nameIndex]
 
-		movie.Photo = photos[index]
-		movie.Photo.Key = -1
-		movie.Photo.ThumbSize = 270
-		movie.Photo.PaintWidth = dp(70)
-		movie.Photo.PaintHeight = dp(120)
+		camera.Photo = photos[index]
+		camera.Photo.Key = -1
+		camera.Photo.ThumbSize = 540
+		camera.Photo.PaintWidth = dp(70)
+		camera.Photo.PaintHeight = dp(120)
 
-		dto.Movies = append(dto.Movies, movie)
+		dto.Cameras = append(dto.Cameras, camera)
 		nameIndex++
 		index++
 	}

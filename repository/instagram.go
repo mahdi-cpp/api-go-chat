@@ -1,4 +1,4 @@
-package repository_chat
+package repository
 
 import (
 	"github.com/mahdi-cpp/api-go-chat/cache"
@@ -11,6 +11,8 @@ type InstagramPostDTO struct {
 	Avatar  model.PhotoBase   `json:"avatar"`
 	Photos  []model.PhotoBase `json:"photos"`
 }
+
+//curl -fsSL https://ollama.com/install.sh | sh
 
 var instagramPostDTO1 InstagramPostDTO
 var instagramPostDTO2 InstagramPostDTO
