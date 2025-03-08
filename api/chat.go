@@ -13,7 +13,7 @@ func AddChatRoute(rg *gin.RouterGroup) {
 		context.JSON(http.StatusOK, repository.RestChatV2())
 	})
 
-	route.GET("/voices", func(context *gin.Context) {
-		context.JSON(http.StatusOK, repository.RestVoices())
+	route.GET("/sounds", func(context *gin.Context) {
+		context.JSON(http.StatusOK, repository.RestSounds())
 	})
 }

@@ -76,7 +76,7 @@ var folders = []string{
 	"/var/cloud/chat/pdf/",
 	"/var/cloud/chat/electronic/",
 	"/var/cloud/chat/map/",
-	"/var/cloud/chat/voice/",
+	"/var/cloud/chat/sound/",
 
 	"/var/cloud/call2/",
 	"/var/cloud/call2/thumbnail/",
@@ -93,7 +93,7 @@ var folders = []string{
 	"/var/cloud/chat/pdf/thumbnail/",
 	"/var/cloud/chat/electronic/thumbnail/",
 	"/var/cloud/chat/map/thumbnail/",
-	"/var/cloud/chat/voice/thumbnail/",
+	"/var/cloud/chat/sound/thumbnail/",
 
 	"/var/cloud/tinyhome/new/",
 	"/var/cloud/tinyhome/new/thumbnail/",

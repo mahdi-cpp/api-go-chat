@@ -21,7 +21,7 @@ type Item struct {
 
 func GetSubtitle() (*SubtitleDTO, error) {
 
-	s, err := astisub.OpenFile("/var/instagram/narges.srt")
+	s, err := astisub.OpenFile("/home/mahdi/files/narges.srt")
 
 	if err != nil {
 		fmt.Printf("Can not read File", err)

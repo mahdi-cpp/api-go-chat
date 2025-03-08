@@ -20,17 +20,17 @@ func Convert3GPToWAV(inputFile string, outputFile string) error {
 	return nil
 }
 
-func SaveRecordToFile(voice repository.Voice) error {
+func SaveRecordToFile(sound repository.Sound) error {
 
 	// Create or open the file
-	file, err := os.Create("/var/instagram/voices/" + voice.FileName + ".txt")
+	file, err := os.Create("/home/mahdi/files/sounds/" + sound.FileName + ".txt")
 	if err != nil {
 		return fmt.Errorf("error creating file: %w", err)
 	}
 	defer file.Close() // Ensure the file is closed after writing
 
 	// Marshal the struct into JSON
-	jsonData, err := json.MarshalIndent(voice, "", "    ") // Indent for readability
+	jsonData, err := json.MarshalIndent(sound, "", "    ") // Indent for readability
 	if err != nil {
 		return fmt.Errorf("error marshaling JSON: %v", err)
 	}
@@ -46,7 +46,7 @@ func SaveRecordToFile(voice repository.Voice) error {
 
 func SaveJSONStringToFile(jsonString, filename string) error {
 	// Create or open the file
-	file, err := os.Create("/var/instagram/voices/" + filename)
+	file, err := os.Create("/home/mahdi/files/sounds/" + filename)
 	if err != nil {
 		return fmt.Errorf("error creating file: %w", err)
 	}

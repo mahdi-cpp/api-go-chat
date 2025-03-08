@@ -23,7 +23,7 @@ func AddUploadRoute(rg *gin.RouterGroup) {
 		}
 
 		uniqueID := uuid.New()
-		var fileName = "/var/instagram/voices/" + uniqueID.String() + ".mp4"
+		var fileName = "/home/mahdi/files/sounds/" + uniqueID.String() + ".mp4"
 
 		// Save the file to the server
 		if err := c.SaveUploadedFile(file, fileName); err != nil {
@@ -31,7 +31,7 @@ func AddUploadRoute(rg *gin.RouterGroup) {
 			return
 		}
 
-		err = Convert3GPToWAV(fileName, "/var/instagram/voices/"+uniqueID.String()+".wav")
+		err = Convert3GPToWAV(fileName, "/home/mahdi/files/sounds/"+uniqueID.String()+".wav")
 		if err != nil {
 			return
 		}

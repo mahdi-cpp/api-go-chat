@@ -6,24 +6,24 @@ import (
 	"github.com/mahdi-cpp/api-go-chat/utils"
 )
 
-var questionVoiceDTO QuestionVoiceDTO
+var questionSoundDTO QuestionSoundDTO
 
-type QuestionVoiceDTO struct {
+type QuestionSoundDTO struct {
 	Caption        string          `json:"name"`
-	QuestionVoices []QuestionVoice `json:"questionVoices"`
+	QuestionSounds []QuestionSound `json:"questionSounds"`
 }
 
-type QuestionVoice struct {
+type QuestionSound struct {
 	Name  string          `json:"name"`
 	Photo model.PhotoBase `json:"photo"`
 }
 
-func GetQuestionVoices(folder string) QuestionVoiceDTO {
+func GetQuestionSounds(folder string) QuestionSoundDTO {
 
 	var file = "data.txt"
 	var photos = cache.ReadOfFile(folder, file)
 	var count = len(photos)
-	var dto QuestionVoiceDTO
+	var dto QuestionSoundDTO
 
 	//if count > 50 {
 	//	count = 50
@@ -33,22 +33,22 @@ func GetQuestionVoices(folder string) QuestionVoiceDTO {
 	var nameIndex = 0
 
 	for i := 0; i < count; i++ {
-		var voice QuestionVoice
+		var sound QuestionSound
 		if nameIndex >= len(utils.MovieNames) {
 			nameIndex = 0
 		}
 
-		voice.Name = utils.MovieNames[nameIndex]
+		sound.Name = utils.MovieNames[nameIndex]
 
-		voice.Photo = photos[index]
-		voice.Photo.Key = -1
-		voice.Photo.ThumbSize = 270
-		voice.Photo.Crop = 2
-		voice.Photo.Round = int(dp(10))
-		voice.Photo.PaintWidth = dp(95)
-		voice.Photo.PaintHeight = dp(95)
+		sound.Photo = photos[index]
+		sound.Photo.Key = -1
+		sound.Photo.ThumbSize = 270
+		sound.Photo.Crop = 2
+		sound.Photo.Round = int(dp(10))
+		sound.Photo.PaintWidth = dp(95)
+		sound.Photo.PaintHeight = dp(95)
 
-		dto.QuestionVoices = append(dto.QuestionVoices, voice)
+		dto.QuestionSounds = append(dto.QuestionSounds, sound)
 		nameIndex++
 		index++
 	}

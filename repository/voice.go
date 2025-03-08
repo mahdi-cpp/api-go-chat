@@ -10,14 +10,14 @@ import (
 	"strings"
 )
 
-type VoiceDTO struct {
-	Voices []Voice `json:"voices"`
+type SoundDTO struct {
+	Sounds []Sound `json:"sounds"`
 }
 
-var voiceDto VoiceDTO
-var voiceDto2 VoiceDTO
+var soundDto SoundDTO
+var soundDto2 SoundDTO
 
-type Voice struct {
+type Sound struct {
 	FileName    string  `json:"fileName"`
 	Duration    int     `json:"duration"`
 	Description string  `json:"description"`
@@ -25,30 +25,30 @@ type Voice struct {
 	Signals     []int16 `json:"signals"`
 }
 
-func GetVoices() VoiceDTO {
+func GetSounds() SoundDTO {
 
-	dir := "/var/instagram/voices"
-	var voiceDTO VoiceDTO
+	dir := "/home/mahdi/files/sounds"
+	var soundDTO SoundDTO
 
-	voices, err := readTxtFiles(dir)
-	log.Println("voices count: ", len(voices))
+	sounds, err := readTxtFiles(dir)
+	log.Println("sounds count: ", len(sounds))
 
 	if err != nil {
 		log.Fatalf("Error reading files: %v", err)
 	}
 
 	// Print the data for demonstration
-	for _, voice := range voices {
-		voiceJSON, _ := json.MarshalIndent(voice, "", "  ")
-		fmt.Printf("Voice: %s\n", voiceJSON)
+	for _, sound := range sounds {
+		soundJSON, _ := json.MarshalIndent(sound, "", "  ")
+		fmt.Printf("Sound: %s\n", soundJSON)
 	}
-	voiceDTO.Voices = voices
-	return voiceDTO
+	soundDTO.Sounds = sounds
+	return soundDTO
 }
 
-// Function to read .txt files from a directory and convert their content to Voice structs
-func readTxtFiles(dir string) ([]Voice, error) {
-	var voices []Voice
+// Function to read .txt files from a directory and convert their content to Sound structs
+func readTxtFiles(dir string) ([]Sound, error) {
+	var sounds []Sound
 
 	// Read all files in the directory
 	files, err := ioutil.ReadDir(dir)
@@ -70,17 +70,17 @@ func readTxtFiles(dir string) ([]Voice, error) {
 				continue
 			}
 
-			var voice Voice
-			err = json.Unmarshal(data, &voice)
+			var sound Sound
+			err = json.Unmarshal(data, &sound)
 			if err != nil {
 				log.Fatalf("Error unmarshaling JSON: %v", err)
 			}
 
-			voices = append(voices, voice)
+			sounds = append(sounds, sound)
 		}
 	}
 
-	return voices, nil
+	return sounds, nil
 }
 
 // Function to parse signal data from a string

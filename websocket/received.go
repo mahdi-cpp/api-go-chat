@@ -65,6 +65,9 @@ func Received(messageType int, msg []byte) {
 
 func processJsonString(class string, jsonString string) {
 	switch class {
+	case "temp":
+		processLamps()
+		break
 	case "FetchChats":
 		processFetchChats()
 		break
@@ -92,7 +95,7 @@ func processJsonString(class string, jsonString string) {
 
 		fmt.Printf("Content: %s\n", message.Content)
 
-		id, err := repo.MessageAdd(message)
+		id, err := repo.DatabaseSaveMessage(message)
 		// Check for errors
 		if err != nil {
 			fmt.Println("Error saving temperature:", err)

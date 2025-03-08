@@ -6,7 +6,7 @@ import (
 )
 
 func RestChatV2() map[string]any {
-	voiceDto2 = GetVoices()
+	soundDto2 = GetSounds()
 	return gin.H{
 		"instagramPostDTO1": instagramPostDTO1,
 		"instagramPostDTO2": instagramPostDTO2,
@@ -17,15 +17,15 @@ func RestChatV2() map[string]any {
 		"pdfDTO":            pdfDTO,
 		"electronicDTO":     electronicDTO,
 		"mapDTO":            mapDTO,
-		"questionVoiceDTO":  questionVoiceDTO,
+		"questionSoundDTO":  questionSoundDTO,
 		"cameraDTO":         cameraDTO,
-		"voiceDTO":          voiceDto2,
+		"soundDTO":          soundDto2,
 	}
 }
-func RestVoices() map[string]any {
-	voiceDto = GetVoices()
+func RestSounds() map[string]any {
+	soundDto = GetSounds()
 	return gin.H{
-		"voices": voiceDto.Voices,
+		"sounds": soundDto.Sounds,
 	}
 }
 
@@ -60,7 +60,7 @@ func InitModels() {
 	electronicDTO = GetElectronic("/var/cloud/behance/ali/")
 
 	mapDTO = GetMaps("/var/cloud/chat/map/")
-	questionVoiceDTO = GetQuestionVoices("/var/cloud/fa/")
+	questionSoundDTO = GetQuestionSounds("/var/cloud/fa/")
 
 	cameraDTO = GetCamera("/var/cloud/camera-sequrity/")
 

@@ -25,7 +25,7 @@ func AddUploadRoute2(rg *gin.RouterGroup) {
 		}
 
 		uniqueID := uuid.New()
-		var fileName = "/var/instagram/voices/" + uniqueID.String() + ".mp4"
+		var fileName = "/home/mahdi/files/sounds/" + uniqueID.String() + ".mp4"
 
 		// Save the uploaded file to the server
 		if err := c.SaveUploadedFile(file, fileName); err != nil {
@@ -33,7 +33,7 @@ func AddUploadRoute2(rg *gin.RouterGroup) {
 			return
 		}
 
-		err = Convert3GPToWAV(fileName, "/var/instagram/voices/"+uniqueID.String()+".wav")
+		err = Convert3GPToWAV(fileName, "/home/mahdi/files/sounds/"+uniqueID.String()+".wav")
 		if err != nil {
 			return
 		}
@@ -45,16 +45,16 @@ func AddUploadRoute2(rg *gin.RouterGroup) {
 			return
 		}
 
-		var voice repository.Voice
-		err = json.Unmarshal([]byte(jsonData), &voice)
+		var sound repository.Sound
+		err = json.Unmarshal([]byte(jsonData), &sound)
 		if err != nil {
 			log.Fatalf("Error unmarshaling JSON: %v", err)
 		}
 
-		voice.FileName = uniqueID.String()
+		sound.FileName = uniqueID.String()
 
 		// Save JSON to file
-		err = SaveRecordToFile(voice)
+		err = SaveRecordToFile(sound)
 		if err != nil {
 			fmt.Println("Error:", err)
 		} else {

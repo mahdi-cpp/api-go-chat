@@ -14,7 +14,7 @@ func InitChatRepository() {
 	db = config.DatabaseInit()
 }
 
-func MessageAdd(message model.Message) (int, error) {
+func DatabaseSaveMessage(message model.Message) (int, error) {
 
 	result := config.DB.Create(&message)
 
@@ -34,6 +34,7 @@ type ChatWithUsers struct {
 }
 
 func FetchChatsForUser(userId int) ([]ChatWithUsers, error) {
+
 	var chatsWithUsers []ChatWithUsers
 	var chats []model.Chat
 

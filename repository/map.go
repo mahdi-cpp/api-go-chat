@@ -3,15 +3,21 @@ package repository
 import (
 	"github.com/mahdi-cpp/api-go-chat/cache"
 	"github.com/mahdi-cpp/api-go-chat/model"
+	"github.com/mahdi-cpp/api-go-chat/repo"
 	"github.com/mahdi-cpp/api-go-chat/utils"
+	"strconv"
 )
 
 var mapDTO MapDTO
 
 type MapDTO struct {
-	Caption string            `json:"name"`
-	Maps    []Map             `json:"maps"`
-	Users   []model.PhotoBase `json:"users"`
+	Caption   string            `json:"name"`
+	Maps      []Map             `json:"maps"`
+	Photos    []model.PhotoBase `json:"photos"`
+	MapPhotos []model.PhotoBase `json:"mapPhotos"`
+	Users     []string          `json:"users"`
+
+	Cafes []model.PhotoBase `json:"cafes"`
 }
 
 type Map struct {
@@ -21,24 +27,50 @@ type Map struct {
 
 func GetMaps(folder string) MapDTO {
 
+	var dto MapDTO
+
+	for i := 1; i < 14; i++ {
+		var photoBase = model.PhotoBase{}
+		photoBase.Name = "chat_" + strconv.Itoa(i)
+		photoBase.Key = -1
+		photoBase.ThumbSize = 135
+		photoBase.Round = int(dp(20))
+		photoBase.PaintWidth = dp(100)
+		photoBase.PaintHeight = dp(100)
+
+		dto.Photos = append(dto.Photos, photoBase)
+		dto.Users = append(dto.Users, repo.Usernames[i])
+	}
+
+	for i := 1; i < 14; i++ {
+		var photo = model.PhotoBase{}
+		photo.Name = "chat_" + strconv.Itoa(i)
+		photo.Key = -1
+		photo.ThumbSize = 135
+		photo.Circle = true
+		photo.PaintWidth = dp(100)
+		photo.PaintHeight = dp(100)
+
+		dto.MapPhotos = append(dto.MapPhotos, photo)
+	}
+
+	for i := 1; i < 14; i++ {
+		var photo = model.PhotoBase{}
+		photo.Name = "chat_" + strconv.Itoa(i)
+		photo.Key = -1
+		photo.ThumbSize = 135
+		photo.Circle = true
+		photo.PaintWidth = dp(100)
+		photo.PaintHeight = dp(100)
+
+		dto.Cafes = append(dto.Cafes, photo)
+	}
+
+	var index = 0
+	var nameIndex = 0
 	var file = "data.txt"
 	var photos = cache.ReadOfFile(folder, file)
 	var count = len(photos)
-	var dto MapDTO
-	var avatarUrl = []string{"b2", "b5", "b19"}
-	var index = 0
-	var nameIndex = 0
-
-	for i := 0; i < 3; i++ {
-		var user = model.PhotoBase{}
-		user.Name = avatarUrl[i]
-		user.Key = -1
-		user.ThumbSize = 270
-		user.Circle = true
-		user.PaintWidth = dp(100)
-		user.PaintHeight = dp(100)
-		dto.Users = append(dto.Users, user)
-	}
 
 	for i := 0; i < count; i++ {
 		var mapData Map
@@ -50,7 +82,7 @@ func GetMaps(folder string) MapDTO {
 
 		mapData.Photo = photos[index]
 		mapData.Photo.Key = -1
-		mapData.Photo.ThumbSize = 270
+		mapData.Photo.ThumbSize = 540
 		mapData.Photo.PaintWidth = dp(70)
 		mapData.Photo.PaintHeight = dp(120)
 

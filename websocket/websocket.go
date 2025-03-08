@@ -3,8 +3,11 @@ package websocket
 import (
 	"fmt"
 	"github.com/gorilla/websocket"
+	"github.com/mahdi-cpp/api-go-chat/repo"
 	"log"
+	"math/rand"
 	"net/http"
+	"time"
 
 	"github.com/mahdi-cpp/api-go-chat/model"
 	"sync"
@@ -38,6 +41,11 @@ func Start() {
 			log.Fatal("ListenAndServe: ", err)
 		}
 	}()
+
+	go func() {
+		SendData()
+	}()
+
 }
 
 func handleConnections(w http.ResponseWriter, r *http.Request) {
@@ -117,10 +125,95 @@ func SendText(text string) {
 	//jsonBytes, err := utils.ConvertObjectToBytes(object)
 	//if err != nil {
 	//	fmt.Println("Error converting object to bytes:", err)
-	//	return
+	//	return               -097
 	//}
 
 	//if err := conn.WriteMessage(websocket.TextMessage, jsonBytes); err != nil {
 	//	fmt.Println("Error while writing message:", err)
 	//}
+}
+
+//adb shell am start -W -a android.intent.action.VIEW -d "https://www.ali.com/mahdi_path?message=HelloWorld" com.helium.chat
+
+// SendData periodically sends data to the client.
+func SendData() {
+
+	ticker := time.NewTicker(60 * time.Second) // Change the duration as needed
+	defer ticker.Stop()
+
+	for {
+		select {
+		case <-ticker.C:
+			var i = rand.Intn(4)
+			switch i {
+			case 0:
+				SendNewMessageToClients()
+				break
+			case 1:
+				SendSound()
+				break
+			case 2:
+				SendSound()
+				break
+			case 3:
+				SendLocation()
+				break
+			case 4:
+				break
+			}
+		}
+	}
+}
+func SendSound() {
+
+	message := model.Message{
+		ID:        rand.Intn(1000) + 1,
+		ChatID:    rand.Intn(70) + 1,
+		UserID:    1,
+		Type:      "sound",
+		Content:   "",
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
+	}
+
+	SendByWebsocket2("new_message", message)
+}
+
+func SendLocation() {
+
+	message := model.Message{
+		ID:        rand.Intn(1000) + 1,
+		ChatID:    rand.Intn(70) + 1,
+		UserID:    1,
+		Type:      "location",
+		Content:   "",
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
+	}
+
+	SendByWebsocket2("new_message", message)
+}
+
+func SendNewMessageToClients() {
+
+	message := model.Message{
+		ID:        rand.Intn(1000) + 1,
+		ChatID:    rand.Intn(70) + 1,
+		UserID:    1,
+		Content:   repo.EnglishMessages[rand.Intn(len(repo.EnglishMessages))],
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
+	}
+
+	SendByWebsocket2("new_message", message)
+}
+
+func processFetchChats() {
+
+	chatList, err := repo.FetchChatsForUser(1)
+	if err != nil {
+		return
+	}
+
+	SendByWebsocket("chatList", chatList)
 }
