@@ -37,7 +37,7 @@ func GetInstagram(folder string, avatar string) InstagramPostDTO {
 	photo.FileType = ".jpg"
 	photo.Width = 50
 	photo.Height = 50
-	photo.ThumbSize = 270
+	photo.ThumbSize = 70
 	photo.Dx = 20
 	photo.Dy = 20
 	photo.Circle = true
@@ -56,11 +56,11 @@ func GetInstagram(folder string, avatar string) InstagramPostDTO {
 		var photo = model.PhotoBase{}
 		photo = photos[index]
 		photo.ThumbSize = 540
-		photo.Crop = 1
+		//photo.Crop = 1
 		photo.Round = 0
 		photo.Key = -1
-		photo.PaintWidth = 1000
-		photo.PaintHeight = 1000
+		photo.PaintWidth = 900
+		photo.PaintHeight = 900
 
 		localInstagramPostDTO.Photos = append(localInstagramPostDTO.Photos, photo)
 

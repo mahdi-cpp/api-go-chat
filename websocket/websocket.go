@@ -138,7 +138,7 @@ func SendText(text string) {
 // SendData periodically sends data to the client.
 func SendData() {
 
-	ticker := time.NewTicker(60 * time.Second) // Change the duration as needed
+	ticker := time.NewTicker(50 * time.Second) // Change the duration as needed
 	defer ticker.Stop()
 
 	for {

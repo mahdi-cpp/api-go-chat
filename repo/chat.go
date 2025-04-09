@@ -45,7 +45,7 @@ func FetchChatsForUser(userId int) ([]ChatWithUsers, error) {
 	//}
 
 	// Query the database to find chats where AdminId matches the provided adminID
-	if err := db.Where("admin_id = ?", userId).Find(&chats).Error; err != nil {
+	if err := db.Where("admin_id = ?", userId).Limit(55).Find(&chats).Error; err != nil {
 		return nil, err
 	}
 

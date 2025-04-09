@@ -33,7 +33,6 @@ func getRoutes() {
 	api.AddDownloadRoutes(v2)
 
 	api.AddUploadRoute(v2)
-	api.AddUploadRoute2(v2)
 }
 
 func CORSMiddleware() gin.HandlerFunc {

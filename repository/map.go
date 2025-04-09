@@ -34,9 +34,9 @@ func GetMaps(folder string) MapDTO {
 		photoBase.Name = "chat_" + strconv.Itoa(i)
 		photoBase.Key = -1
 		photoBase.ThumbSize = 135
-		photoBase.Round = int(dp(20))
-		photoBase.PaintWidth = dp(100)
-		photoBase.PaintHeight = dp(100)
+		photoBase.Circle = true
+		photoBase.PaintWidth = dp(130)
+		photoBase.PaintHeight = dp(130)
 
 		dto.Photos = append(dto.Photos, photoBase)
 		dto.Users = append(dto.Users, repo.Usernames[i])

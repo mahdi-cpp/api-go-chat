@@ -64,6 +64,7 @@ func Received(messageType int, msg []byte) {
 }
 
 func processJsonString(class string, jsonString string) {
+
 	switch class {
 	case "temp":
 		processLamps()
@@ -83,6 +84,7 @@ func processJsonString(class string, jsonString string) {
 			return
 		}
 		break
+
 	case "FetchChatId":
 
 		break

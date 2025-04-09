@@ -1,31 +1,33 @@
 package api
 
 import (
+	"encoding/json"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
+	"github.com/mahdi-cpp/api-go-chat/repository"
+	"log"
 	"net/http"
 )
-
-var counter = 0
 
 func AddUploadRoute(rg *gin.RouterGroup) {
 
 	route := rg.Group("/upload")
 
-	// Define the upload endpoint
+	// Define a POST endpoint to handle file uploads
 	route.POST("/", func(c *gin.Context) {
 
-		// Get the file from the request
+		// Read the uploaded file
 		file, err := c.FormFile("file")
 		if err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": "File is required"})
+			c.JSON(http.StatusBadRequest, gin.H{"error": "File not found"})
 			return
 		}
 
 		uniqueID := uuid.New()
 		var fileName = "/home/mahdi/files/sounds/" + uniqueID.String() + ".mp4"
 
-		// Save the file to the server
+		// Save the uploaded file to the server
 		if err := c.SaveUploadedFile(file, fileName); err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "Unable to save file"})
 			return
@@ -36,10 +38,38 @@ func AddUploadRoute(rg *gin.RouterGroup) {
 			return
 		}
 
-		// Respond with success message
-		//c.JSON(http.StatusOK, gin.H{"message": fmt.Sprintf("File %s uploaded successfully", file.Filename)})
+		// Read the JSON data from the form
+		jsonData := c.PostForm("json")
+		if jsonData == "" {
+			c.JSON(http.StatusBadRequest, gin.H{"error": "JSON data not found"})
+			return
+		}
 
-		c.String(http.StatusOK, uniqueID.String()+".3gp")
+		var sound repository.Sound
+		err = json.Unmarshal([]byte(jsonData), &sound)
+		if err != nil {
+			log.Fatalf("Error unmarshaling JSON: %v", err)
+		}
+
+		sound.FileName = uniqueID.String()
+
+		// Save JSON to file
+		err = SaveRecordToFile(sound)
+		if err != nil {
+			fmt.Println("Error:", err)
+		} else {
+			fmt.Println("JSON data saved to data.json")
+		}
+
+		// Log the received data
+		log.Printf("Received file: %s", file.Filename)
+		log.Printf("Received JSON data: %s", jsonData)
+
+		// Respond to the client
+		c.JSON(http.StatusOK, gin.H{
+			"message":    "File uploaded successfully",
+			"soundModel": sound,
+		})
 	})
 
 }

@@ -16,6 +16,8 @@ type PhotoBase struct {
 	PaintHeight float32 `json:"paintHeight,omitempty"`
 	Dx          float32 `json:"dx,omitempty"`
 	Dy          float32 `json:"dy,omitempty"`
+	IsVideo     bool    `json:"isVideo"`
+	VideoFormat string  `json:"videoFormat"`
 }
 
 type IconBase struct {

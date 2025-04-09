@@ -43,7 +43,7 @@ func GetQuestionSounds(folder string) QuestionSoundDTO {
 		sound.Photo = photos[index]
 		sound.Photo.Key = -1
 		sound.Photo.ThumbSize = 270
-		sound.Photo.Crop = 2
+		sound.Photo.Circle = true
 		sound.Photo.Round = int(dp(10))
 		sound.Photo.PaintWidth = dp(95)
 		sound.Photo.PaintHeight = dp(95)

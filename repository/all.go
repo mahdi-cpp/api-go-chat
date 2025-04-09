@@ -13,6 +13,7 @@ func RestChatV2() map[string]any {
 		"instagramPostDTO3": instagramPostDTO3,
 		"storyDTO":          storyDTO,
 		"movieDTO":          movieDTO,
+		"musicDTO":          musicDTO,
 		"animationDTO":      animationDTO,
 		"pdfDTO":            pdfDTO,
 		"electronicDTO":     electronicDTO,
@@ -20,6 +21,7 @@ func RestChatV2() map[string]any {
 		"questionSoundDTO":  questionSoundDTO,
 		"cameraDTO":         cameraDTO,
 		"soundDTO":          soundDto2,
+		"factureDTO":        factureDTO,
 	}
 }
 func RestSounds() map[string]any {
@@ -46,13 +48,14 @@ var newSubTitle *SubtitleDTO
 
 func InitModels() {
 
-	instagramPostDTO1 = GetInstagram("/var/cloud/reynardlowell/", "b23")
-	instagramPostDTO2 = GetInstagram("/var/cloud/paris/", "narges2")
-	instagramPostDTO3 = GetInstagram("/var/cloud/reynardlowell/", "01")
+	instagramPostDTO1 = GetInstagram("/var/cloud/id/messi/", "chat_40")
+	instagramPostDTO2 = GetInstagram("/var/cloud/id/fa/", "chat_29")
+	instagramPostDTO3 = GetInstagram("/var/cloud/id/girl/", "chat_38")
 
 	storyDTO = GetStory("/var/cloud/fa/", "ma")
 
-	movieDTO = GetMovies("/var/cloud/chat/movie/movie/")
+	movieDTO = GetMovies("/var/cloud/video/")
+
 	animationDTO = GetAnimation("/var/cloud/chat/movie/animation/")
 
 	pdfDTO = GetPdfs("/var/cloud/chat/pdf/")
@@ -60,11 +63,13 @@ func InitModels() {
 	electronicDTO = GetElectronic("/var/cloud/behance/ali/")
 
 	mapDTO = GetMaps("/var/cloud/chat/map/")
-	questionSoundDTO = GetQuestionSounds("/var/cloud/fa/")
+	questionSoundDTO = GetQuestionSounds("/var/cloud/chat_users/")
 
 	cameraDTO = GetCamera("/var/cloud/camera-sequrity/")
 
-	musicDTO = GetMusics("/var/cloud/reynardlowell/")
+	musicDTO = GetMusics("/var/cloud/music/albums/")
+
+	factureDTO = GetPhotoListDTO("/var/cloud/facture/", "لیست فاکتور های آبان 1403", "در این مقاله از بخش راهنمای آنلاین محک به یکی دیگر از آموزش های نرم افزار حسابداری محک می‌پردازیم. این آموزش در مورد فاکتور فروش است و فیلم آموزش ثبت و صدور فاکتور فروش در نرم افزار حسابداری محک را می‌توانید در ادامه مشاهده نمایید.")
 
 }
 

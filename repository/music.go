@@ -9,7 +9,7 @@ import (
 var musicDTO MusicDTO
 
 type MusicDTO struct {
-	Caption string  `json:"name"`
+	Caption string  `json:"caption"`
 	Musics  []Music `json:"musics"`
 }
 
@@ -41,7 +41,7 @@ func GetMusics(folder string) MusicDTO {
 		music.Cover.Key = -1
 		//music.Cover.Crop = 1
 		//music.Cover.Round = 10
-		music.Cover.ThumbSize = 1080
+		music.Cover.ThumbSize = 540
 		//music.Cover.PaintWidth = dp(70)
 		//music.Cover.PaintHeight = dp(120)
 

@@ -44,6 +44,9 @@ var folders = []string{
 	"/var/cloud/behance/06/",
 	"/var/cloud/behance/06/thumbnail/",
 
+	"/var/cloud/mahdi/",
+	"/var/cloud/mahdi/thumbnail/",
+
 	"/var/cloud/behance/ali/",
 	"/var/cloud/behance/ali/thumbnail/",
 
@@ -69,6 +72,24 @@ var folders = []string{
 
 	"/var/cloud/chat/movie/movie/thumbnail/",
 	"/var/cloud/chat/movie/animation/thumbnail/",
+
+	"/var/cloud/id/cut/",
+	"/var/cloud/id/cut/thumbnail/",
+
+	"/var/cloud/id/tde/",
+	"/var/cloud/id/tde/thumbnail/",
+
+	"/var/cloud/facture/",
+	"/var/cloud/facture/thumbnail/",
+
+	"/var/cloud/video/",
+	"/var/cloud/video/thumbnail/",
+
+	"/var/cloud/video/33yac/",
+	"/var/cloud/video/33yac/thumbnail/",
+
+	"/var/cloud/video/new1/",
+	"/var/cloud/video/new1/thumbnail/",
 
 	"/var/cloud/camera-sequrity/",
 	"/var/cloud/camera-sequrity/thumbnail/",
