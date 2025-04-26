@@ -21,7 +21,7 @@ type Item struct {
 
 func GetSubtitle() (*SubtitleDTO, error) {
 
-	s, err := astisub.OpenFile("/home/mahdi/files/narges.srt")
+	s, err := astisub.OpenFile("/home/mahdi/files/srt/Hacksaw.Ridge.2016.720p.1080p.BluRay.UTF.Fa.srt")
 
 	if err != nil {
 		fmt.Printf("Can not read File", err)

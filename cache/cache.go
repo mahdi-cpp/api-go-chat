@@ -60,8 +60,6 @@ var folders = []string{
 
 	"/var/cloud/id/ali/",
 	"/var/cloud/id/ali2/",
-	"/var/cloud/id/cut/",
-	"/var/cloud/id/girl/",
 	"/var/cloud/id/face/",
 	"/var/cloud/id/trip/",
 	"/var/cloud/id/go/",
@@ -72,9 +70,6 @@ var folders = []string{
 
 	"/var/cloud/chat/movie/movie/thumbnail/",
 	"/var/cloud/chat/movie/animation/thumbnail/",
-
-	"/var/cloud/id/cut/",
-	"/var/cloud/id/cut/thumbnail/",
 
 	"/var/cloud/id/tde/",
 	"/var/cloud/id/tde/thumbnail/",
@@ -105,8 +100,6 @@ var folders = []string{
 	"/var/cloud/fa/thumbnail/",
 	"/var/cloud/id/ali/thumbnail/",
 	"/var/cloud/id/ali2/thumbnail/",
-	"/var/cloud/id/cut/thumbnail/",
-	"/var/cloud/id/girl/thumbnail/",
 	"/var/cloud/id/face/thumbnail/",
 	"/var/cloud/id/trip/thumbnail/",
 	"/var/cloud/id/go/thumbnail/",
@@ -124,6 +117,19 @@ var folders = []string{
 
 	"/var/cloud/chat_users/",
 	"/var/cloud/chat_users/thumbnail/",
+
+	//-----------------------------------------------------------
+	"/var/cloud/00-instagram/razzle-photo/",
+	"/var/cloud/00-instagram/razzle-photo/thumbnail/",
+
+	"/var/cloud/00-instagram/ashtonhall/",
+	"/var/cloud/00-instagram/ashtonhall/thumbnail/",
+
+	"/var/cloud/00-instagram/lucaspopan/",
+	"/var/cloud/00-instagram/lucaspopan/thumbnail/",
+
+	"/var/cloud/00-instagram/razzle/",
+	"/var/cloud/00-instagram/razzle/thumbnail/",
 }
 
 var iconFolder = "/var/cloud/icons/"

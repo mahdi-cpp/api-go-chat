@@ -13,6 +13,7 @@ func RestChatV2() map[string]any {
 		"instagramPostDTO3": instagramPostDTO3,
 		"storyDTO":          storyDTO,
 		"movieDTO":          movieDTO,
+		"video2DTO":         video2DTO,
 		"musicDTO":          musicDTO,
 		"animationDTO":      animationDTO,
 		"pdfDTO":            pdfDTO,
@@ -50,11 +51,12 @@ func InitModels() {
 
 	instagramPostDTO1 = GetInstagram("/var/cloud/id/messi/", "chat_40")
 	instagramPostDTO2 = GetInstagram("/var/cloud/id/fa/", "chat_29")
-	instagramPostDTO3 = GetInstagram("/var/cloud/id/girl/", "chat_38")
+	instagramPostDTO3 = GetInstagram("/var/cloud/id/ali/", "chat_38")
 
 	storyDTO = GetStory("/var/cloud/fa/", "ma")
 
-	movieDTO = GetMovies("/var/cloud/video/")
+	movieDTO = GetMovies("/var/cloud/00-instagram/lucaspopan/")
+	video2DTO = GetVideo2("/var/cloud/00-instagram/ashtonhall//")
 
 	animationDTO = GetAnimation("/var/cloud/chat/movie/animation/")
 
