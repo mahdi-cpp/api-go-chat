@@ -14,9 +14,9 @@ type MusicDTO struct {
 }
 
 type Music struct {
-	Artist string          `json:"artist"`
-	Track  string          `json:"track"`
-	Cover  model.PhotoBase `json:"cover"`
+	Artist string        `json:"artist"`
+	Track  string        `json:"track"`
+	Cover  model.UIImage `json:"cover"`
 }
 
 func GetMusics(folder string) MusicDTO {
@@ -29,6 +29,10 @@ func GetMusics(folder string) MusicDTO {
 	var index = 0
 	var nameIndex = 0
 
+	if count > 10 {
+		count = 10
+	}
+
 	for i := 0; i < count; i++ {
 		var music Music
 		if nameIndex >= len(utils.MovieNames) {
@@ -38,13 +42,6 @@ func GetMusics(folder string) MusicDTO {
 		music.Artist = utils.MovieNames[nameIndex]
 
 		music.Cover = photos[index]
-		music.Cover.Key = -1
-		//music.Cover.Crop = 1
-		//music.Cover.Round = 10
-		music.Cover.ThumbSize = 540
-		//music.Cover.PaintWidth = dp(70)
-		//music.Cover.PaintHeight = dp(120)
-
 		dto.Musics = append(dto.Musics, music)
 		nameIndex++
 		index++

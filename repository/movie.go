@@ -20,8 +20,8 @@ type MovieDTO struct {
 }
 
 type Movie struct {
-	Name  string          `json:"name"`
-	Photo model.PhotoBase `json:"photo"`
+	Name  string        `json:"name"`
+	Photo model.UIImage `json:"photo"`
 }
 
 func GetMovies(folder string) MovieDTO {
@@ -51,12 +51,11 @@ func GetMovies(folder string) MovieDTO {
 
 		movie.Name = utils.MovieNames[nameIndex]
 		movie.Photo = photos[index]
-		movie.Photo.Key = -1
-		movie.Photo.ThumbSize = 540
 		movie.Photo.VideoFormat = videoFormats[movie.Photo.Name]
 		movie.Photo.IsVideo = true
-		movie.Photo.PaintWidth = float32(movie.Photo.Width)
-		movie.Photo.PaintHeight = float32(movie.Photo.Height)
+		movie.Photo.HasVideoControl = false
+
+		//fmt.Println(videoFormats[movie.Photo.Name])
 
 		//duration, err := getVideoDuration("/home/mahdi/files/" + movie.Photo.Name + "." + movie.Photo.VideoFormat)
 		//if err != nil {

@@ -14,8 +14,8 @@ type QuestionSoundDTO struct {
 }
 
 type QuestionSound struct {
-	Name  string          `json:"name"`
-	Photo model.PhotoBase `json:"photo"`
+	Name  string        `json:"name"`
+	Photo model.UIImage `json:"photo"`
 }
 
 func GetQuestionSounds(folder string) QuestionSoundDTO {
@@ -25,9 +25,9 @@ func GetQuestionSounds(folder string) QuestionSoundDTO {
 	var count = len(photos)
 	var dto QuestionSoundDTO
 
-	//if count > 50 {
-	//	count = 50
-	//}
+	if count > 10 {
+		count = 10
+	}
 
 	var index = 0
 	var nameIndex = 0
@@ -41,12 +41,6 @@ func GetQuestionSounds(folder string) QuestionSoundDTO {
 		sound.Name = utils.MovieNames[nameIndex]
 
 		sound.Photo = photos[index]
-		sound.Photo.Key = -1
-		sound.Photo.ThumbSize = 270
-		sound.Photo.Circle = true
-		sound.Photo.Round = int(dp(10))
-		sound.Photo.PaintWidth = dp(95)
-		sound.Photo.PaintHeight = dp(95)
 
 		dto.QuestionSounds = append(dto.QuestionSounds, sound)
 		nameIndex++

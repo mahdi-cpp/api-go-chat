@@ -8,9 +8,9 @@ import (
 var factureDTO PhotoListDTO
 
 type PhotoListDTO struct {
-	Title       string            `json:"title"`
-	Description string            `json:"description"`
-	Photos      []model.PhotoBase `json:"photos"`
+	Title       string          `json:"title"`
+	Description string          `json:"description"`
+	Photos      []model.UIImage `json:"photos"`
 }
 
 func GetPhotoListDTO(folder string, title string, description string) PhotoListDTO {
@@ -26,10 +26,8 @@ func GetPhotoListDTO(folder string, title string, description string) PhotoListD
 	dto.Description = description
 
 	for i := 0; i < count; i++ {
-		var photo model.PhotoBase
+		var photo model.UIImage
 		photo = photos[index]
-		photo.Key = -1
-		photo.ThumbSize = 540
 		dto.Photos = append(dto.Photos, photo)
 		index++
 	}

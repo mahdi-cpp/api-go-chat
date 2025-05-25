@@ -14,8 +14,8 @@ type AnimationDTO struct {
 }
 
 type Animation struct {
-	Name  string          `json:"name"`
-	Photo model.PhotoBase `json:"photo"`
+	Name  string        `json:"name"`
+	Photo model.UIImage `json:"photo"`
 }
 
 func GetAnimation(folder string) AnimationDTO {
@@ -25,9 +25,9 @@ func GetAnimation(folder string) AnimationDTO {
 	var count = len(photos)
 	var dto AnimationDTO
 
-	//if count > 50 {
-	//	count = 50
-	//}
+	if count > 20 {
+		count = 20
+	}
 
 	var index = 0
 	var nameIndex = 0
@@ -41,10 +41,6 @@ func GetAnimation(folder string) AnimationDTO {
 		animation.Name = utils.MovieNames[nameIndex]
 
 		animation.Photo = photos[index]
-		animation.Photo.Key = -1
-		animation.Photo.ThumbSize = 540
-		animation.Photo.PaintWidth = dp(70)
-		animation.Photo.PaintHeight = dp(120)
 
 		dto.Animations = append(dto.Animations, animation)
 		nameIndex++

@@ -49,14 +49,14 @@ var newSubTitle *SubtitleDTO
 
 func InitModels() {
 
-	instagramPostDTO1 = GetInstagram("/var/cloud/id/messi/", "chat_40")
-	instagramPostDTO2 = GetInstagram("/var/cloud/id/fa/", "chat_29")
-	instagramPostDTO3 = GetInstagram("/var/cloud/id/ali/", "chat_38")
+	instagramPostDTO1 = GetInstagram("/var/cloud/id/messi/", "chat_12")
+	instagramPostDTO2 = GetInstagram("/var/cloud/fa/", "chat_25")
+	instagramPostDTO3 = GetInstagram("/var/cloud/id/ali/", "chat_18")
 
 	storyDTO = GetStory("/var/cloud/fa/", "ma")
 
-	movieDTO = GetMovies("/var/cloud/00-instagram/lucaspopan/")
-	video2DTO = GetVideo2("/var/cloud/00-instagram/ashtonhall//")
+	video2DTO = GetMovies("/var/cloud/id/ali/")
+	movieDTO = GetVideo2("/var/cloud/id/ali/")
 
 	animationDTO = GetAnimation("/var/cloud/chat/movie/animation/")
 
@@ -67,9 +67,9 @@ func InitModels() {
 	mapDTO = GetMaps("/var/cloud/chat/map/")
 	questionSoundDTO = GetQuestionSounds("/var/cloud/chat_users/")
 
-	cameraDTO = GetCamera("/var/cloud/camera-sequrity/")
+	cameraDTO = GetCamera("/var/cloud/tinyhome/06/")
 
-	musicDTO = GetMusics("/var/cloud/music/albums/")
+	musicDTO = GetMusics("/var/cloud/music/2/")
 
 	factureDTO = GetPhotoListDTO("/var/cloud/facture/", "لیست فاکتور های آبان 1403", "در این مقاله از بخش راهنمای آنلاین محک به یکی دیگر از آموزش های نرم افزار حسابداری محک می‌پردازیم. این آموزش در مورد فاکتور فروش است و فیلم آموزش ثبت و صدور فاکتور فروش در نرم افزار حسابداری محک را می‌توانید در ادامه مشاهده نمایید.")
 

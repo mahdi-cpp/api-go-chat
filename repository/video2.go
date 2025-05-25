@@ -31,12 +31,9 @@ func GetVideo2(folder string) MovieDTO {
 
 		movie.Name = "Mahdi"
 		movie.Photo = photos[index]
-		movie.Photo.Key = -1
-		movie.Photo.ThumbSize = 540
 		movie.Photo.VideoFormat = videoFormats[movie.Photo.Name]
 		movie.Photo.IsVideo = true
-		movie.Photo.PaintWidth = float32(movie.Photo.Width)
-		movie.Photo.PaintHeight = float32(movie.Photo.Height)
+		movie.Photo.HasVideoControl = false
 
 		dto.Movies = append(dto.Movies, movie)
 

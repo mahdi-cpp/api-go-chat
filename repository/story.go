@@ -9,14 +9,14 @@ import (
 var storyDTO StoryDTO
 
 type StoryDTO struct {
-	Caption string          `json:"name"`
-	Avatar  model.PhotoBase `json:"avatar"`
-	Stories []Story         `json:"stories"`
+	Caption string        `json:"name"`
+	Avatar  model.UIImage `json:"avatar"`
+	Stories []Story       `json:"stories"`
 }
 
 type Story struct {
-	Name  string          `json:"name"`
-	Photo model.PhotoBase `json:"photo"`
+	Name  string        `json:"name"`
+	Photo model.UIImage `json:"photo"`
 }
 
 func GetStory(folder string, avatar string) StoryDTO {
@@ -33,16 +33,13 @@ func GetStory(folder string, avatar string) StoryDTO {
 	var index = 0
 	var nameIndex = 0
 
-	var photo = model.PhotoBase{}
+	var photo = model.UIImage{}
 	photo.Name = avatar
 	photo.FileType = ".jpg"
-	photo.Width = 200
-	photo.Height = 200
-	photo.ThumbSize = 270
-	photo.Circle = true
-	photo.Key = -1
-	photo.PaintWidth = dp(100)
-	photo.PaintHeight = dp(100)
+	photo.Size.Width = 200
+	photo.Size.Height = 200
+	photo.AspectRatio = 1
+
 	storyDTO.Avatar = photo
 
 	for i := 0; i < count; i++ {
@@ -52,13 +49,7 @@ func GetStory(folder string, avatar string) StoryDTO {
 		}
 
 		story.Name = utils.FackNames[nameIndex]
-
 		story.Photo = photos[index]
-		story.Photo.Key = -1
-		story.Photo.ThumbSize = 270
-		story.Photo.Circle = true
-		story.Photo.PaintWidth = dp(70)
-		story.Photo.PaintHeight = dp(70)
 
 		storyDTO.Stories = append(storyDTO.Stories, story)
 		nameIndex++

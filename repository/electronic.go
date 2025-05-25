@@ -14,8 +14,8 @@ type ElectronicDTO struct {
 }
 
 type Electronic struct {
-	Name  string          `json:"name"`
-	Photo model.PhotoBase `json:"photo"`
+	Name  string        `json:"name"`
+	Photo model.UIImage `json:"photo"`
 }
 
 func GetElectronic(folder string) ElectronicDTO {
@@ -40,10 +40,6 @@ func GetElectronic(folder string) ElectronicDTO {
 
 		electronic.Name = utils.MovieNames[nameIndex]
 		electronic.Photo = photos[index]
-		electronic.Photo.Key = -1
-		electronic.Photo.ThumbSize = 540
-		electronic.Photo.Crop = 1
-		electronic.Photo.Round = int(dp(10))
 
 		dto.Electronics = append(dto.Electronics, electronic)
 		nameIndex++

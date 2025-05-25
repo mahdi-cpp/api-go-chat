@@ -14,8 +14,8 @@ type PdfDTO struct {
 }
 
 type Pdf struct {
-	Name  string          `json:"name"`
-	Photo model.PhotoBase `json:"photo"`
+	Name  string        `json:"name"`
+	Photo model.UIImage `json:"photo"`
 }
 
 func GetPdfs(folder string) PdfDTO {
@@ -41,8 +41,6 @@ func GetPdfs(folder string) PdfDTO {
 		pdf.Name = utils.MovieNames[nameIndex]
 
 		pdf.Photo = photos[index]
-		pdf.Photo.Key = -1
-		pdf.Photo.ThumbSize = 270
 
 		pdfDTO.Pdfs = append(pdfDTO.Pdfs, pdf)
 		nameIndex++

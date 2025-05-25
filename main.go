@@ -2,7 +2,6 @@ package main
 
 import (
 	"github.com/mahdi-cpp/api-go-chat/cache"
-	"github.com/mahdi-cpp/api-go-chat/config"
 	"github.com/mahdi-cpp/api-go-chat/redis_service"
 	"github.com/mahdi-cpp/api-go-chat/repo"
 	"github.com/mahdi-cpp/api-go-chat/repository"
@@ -17,7 +16,6 @@ func main() {
 
 	//repo.FakeChats()
 
-	config.LayoutInit()
 	repository.InitModels()
 	cache.ReadIcons()
 

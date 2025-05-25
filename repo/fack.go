@@ -116,7 +116,7 @@ func FakeGroupChats() {
 
 func FakeMessages() {
 
-	for i := 0; i < 190; i++ {
+	for i := 0; i < 100; i++ {
 		message := model.Message{
 			ChatID:    rand.Intn(80) + 1,                                  // Random ChatID between 1 and 10
 			UserID:    1,                                                  // Fixed UserID

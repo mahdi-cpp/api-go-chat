@@ -7,9 +7,9 @@ import (
 )
 
 type InstagramPostDTO struct {
-	Caption string            `json:"caption"`
-	Avatar  model.PhotoBase   `json:"avatar"`
-	Photos  []model.PhotoBase `json:"photos"`
+	Caption string          `json:"caption"`
+	Avatar  model.UIImage   `json:"avatar"`
+	Photos  []model.UIImage `json:"photos"`
 }
 
 //curl -fsSL https://ollama.com/install.sh | sh
@@ -25,25 +25,19 @@ func GetInstagram(folder string, avatar string) InstagramPostDTO {
 	var count = len(photos)
 	var localInstagramPostDTO InstagramPostDTO
 
-	//if count > 10 {
-	//	count = 10
-	//}
+	if count > 11 {
+		count = 11
+	}
 
 	var index = 0
 	var nameIndex = 0
 
-	var photo = model.PhotoBase{}
+	var photo = model.UIImage{}
 	photo.Name = avatar
 	photo.FileType = ".jpg"
-	photo.Width = 50
-	photo.Height = 50
-	photo.ThumbSize = 70
-	photo.Dx = 20
-	photo.Dy = 20
-	photo.Circle = true
-	photo.Key = -1
-	photo.PaintWidth = dp(33)
-	photo.PaintHeight = dp(33)
+	photo.Size.Width = 50
+	photo.Size.Height = 50
+	photo.IsVideo = false
 	localInstagramPostDTO.Avatar = photo
 
 	localInstagramPostDTO.Caption = "Mahdi"
@@ -53,14 +47,8 @@ func GetInstagram(folder string, avatar string) InstagramPostDTO {
 			nameIndex = 0
 		}
 
-		var photo = model.PhotoBase{}
+		var photo = model.UIImage{}
 		photo = photos[index]
-		photo.ThumbSize = 540
-		//photo.Crop = 1
-		photo.Round = 0
-		photo.Key = -1
-		photo.PaintWidth = 900
-		photo.PaintHeight = 900
 
 		localInstagramPostDTO.Photos = append(localInstagramPostDTO.Photos, photo)
 

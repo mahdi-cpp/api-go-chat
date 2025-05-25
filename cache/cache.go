@@ -2,7 +2,6 @@ package cache
 
 import (
 	"bytes"
-	"encoding/json"
 	"fmt"
 	"github.com/mahdi-cpp/api-go-chat/model"
 	"image"
@@ -25,6 +24,9 @@ var folders = []string{
 
 	"/var/cloud/music/albums/",
 	"/var/cloud/music/albums/thumbnail/",
+
+	"/var/cloud/music/2/",
+	"/var/cloud/music/2/thumbnail/",
 
 	"/var/cloud/paris/",
 	"/var/cloud/paris/thumbnail/",
@@ -130,31 +132,18 @@ var folders = []string{
 
 	"/var/cloud/00-instagram/razzle/",
 	"/var/cloud/00-instagram/razzle/thumbnail/",
+
+	"/var/cloud/00-instagram/nickloveswildlife/",
+	"/var/cloud/00-instagram/nickloveswildlife/thumbnail/",
+
+	"/var/cloud/00-instagram/video/",
+	"/var/cloud/00-instagram/video/thumbnail/",
+
+	"/var/cloud/00-instagram/quercetodicastellina/",
+	"/var/cloud/00-instagram/quercetodicastellina/thumbnail/",
 }
 
 var iconFolder = "/var/cloud/icons/"
-
-func ReadOfFile(folder string, file string) []model.PhotoBase {
-
-	var photos []model.PhotoBase
-
-	// Open the file for reading
-	f, err := os.Open(folder + file)
-	if err != nil {
-		fmt.Println("Error opening file:", err)
-		return nil
-	}
-	defer f.Close() // Ensure the file is closed when we're done
-
-	// Create a JSON decoder and decode the data into the slice
-	decoder := json.NewDecoder(f)
-	if err := decoder.Decode(&photos); err != nil {
-		fmt.Println("Error decoding JSON:", err)
-		return nil
-	}
-
-	return photos
-}
 
 func ReadIcons() {
 	// Specify the directory you want to read
@@ -328,7 +317,7 @@ var IdGen = NewIDGenerator()
 
 type PhotoBaseCache struct {
 	sync.RWMutex
-	Cache map[int]model.PhotoBase
+	Cache map[int]model.UIImage
 }
 
-var PhotoBaseMemory = PhotoBaseCache{Cache: make(map[int]model.PhotoBase)}
+var PhotoBaseMemory = PhotoBaseCache{Cache: make(map[int]model.UIImage)}

@@ -14,8 +14,8 @@ type CameraDTO struct {
 }
 
 type Camera struct {
-	Name  string          `json:"name"`
-	Photo model.PhotoBase `json:"photo"`
+	Name  string        `json:"name"`
+	Photo model.UIImage `json:"photo"`
 }
 
 func GetCamera(folder string) CameraDTO {
@@ -41,10 +41,6 @@ func GetCamera(folder string) CameraDTO {
 		camera.Name = utils.MovieNames[nameIndex]
 
 		camera.Photo = photos[index]
-		camera.Photo.Key = -1
-		camera.Photo.ThumbSize = 540
-		camera.Photo.PaintWidth = dp(70)
-		camera.Photo.PaintHeight = dp(120)
 
 		dto.Cameras = append(dto.Cameras, camera)
 		nameIndex++

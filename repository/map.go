@@ -11,59 +11,50 @@ import (
 var mapDTO MapDTO
 
 type MapDTO struct {
-	Caption   string            `json:"name"`
-	Maps      []Map             `json:"maps"`
-	Photos    []model.PhotoBase `json:"photos"`
-	MapPhotos []model.PhotoBase `json:"mapPhotos"`
-	Users     []string          `json:"users"`
+	Caption   string          `json:"name"`
+	Maps      []Map           `json:"maps"`
+	Photos    []model.UIImage `json:"photos"`
+	MapPhotos []model.UIImage `json:"mapPhotos"`
+	Users     []string        `json:"users"`
 
-	Cafes []model.PhotoBase `json:"cafes"`
+	Cafes []model.UIImage `json:"cafes"`
 }
 
 type Map struct {
-	Name  string          `json:"name"`
-	Photo model.PhotoBase `json:"photo"`
+	Name  string        `json:"name"`
+	Photo model.UIImage `json:"photo"`
 }
 
 func GetMaps(folder string) MapDTO {
 
 	var dto MapDTO
 
-	for i := 1; i < 14; i++ {
-		var photoBase = model.PhotoBase{}
-		photoBase.Name = "chat_" + strconv.Itoa(i)
-		photoBase.Key = -1
-		photoBase.ThumbSize = 135
-		photoBase.Circle = true
-		photoBase.PaintWidth = dp(130)
-		photoBase.PaintHeight = dp(130)
+	for i := 14; i < 34; i++ {
+		var image = model.UIImage{}
+		image.Name = "chat_" + strconv.Itoa(i)
+		image.Size.Width = 400
+		image.Size.Height = 400
 
-		dto.Photos = append(dto.Photos, photoBase)
+		dto.Photos = append(dto.Photos, image)
 		dto.Users = append(dto.Users, repo.Usernames[i])
 	}
 
-	for i := 1; i < 14; i++ {
-		var photo = model.PhotoBase{}
-		photo.Name = "chat_" + strconv.Itoa(i)
-		photo.Key = -1
-		photo.ThumbSize = 135
-		photo.Circle = true
-		photo.PaintWidth = dp(100)
-		photo.PaintHeight = dp(100)
+	for i := 14; i < 34; i++ {
+		var image = model.UIImage{}
+		image.Name = "chat_" + strconv.Itoa(i)
+		image.Size.Width = 400
+		image.Size.Height = 400
 
-		dto.MapPhotos = append(dto.MapPhotos, photo)
+		dto.MapPhotos = append(dto.MapPhotos, image)
 	}
 
-	for i := 1; i < 14; i++ {
-		var photo = model.PhotoBase{}
-		photo.Name = "chat_" + strconv.Itoa(i)
-		photo.Key = -1
-		photo.ThumbSize = 135
-		photo.Circle = true
-		photo.PaintWidth = dp(100)
-		photo.PaintHeight = dp(100)
+	for i := 14; i < 34; i++ {
+		var image = model.UIImage{}
+		image.Name = "chat_" + strconv.Itoa(i)
+		image.Size.Width = 400
+		image.Size.Height = 400
 
-		dto.Cafes = append(dto.Cafes, photo)
+		dto.Cafes = append(dto.Cafes, image)
 	}
 
 	var index = 0
@@ -81,10 +72,6 @@ func GetMaps(folder string) MapDTO {
 		mapData.Name = utils.MovieNames[nameIndex]
 
 		mapData.Photo = photos[index]
-		mapData.Photo.Key = -1
-		mapData.Photo.ThumbSize = 540
-		mapData.Photo.PaintWidth = dp(70)
-		mapData.Photo.PaintHeight = dp(120)
 
 		dto.Maps = append(dto.Maps, mapData)
 		nameIndex++
